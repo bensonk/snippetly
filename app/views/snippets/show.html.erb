@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @snippet.name %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%= @snippet.owner_id %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @snippet.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_snippet_path(@snippet) %> |
+<%= link_to 'Back', snippets_path %>
