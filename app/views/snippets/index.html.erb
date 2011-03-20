@@ -13,11 +13,19 @@
 <% @snippets.each do |snippet| %>
   <tr>
     <td><%= snippet.name %></td>
-    <td><%= snippet.owner_id %></td>
+    <td><%= snippet.owner ? snippet.owner.name : "anon" %></td>
     <td><%= snippet.body %></td>
     <td><%= link_to 'Show', snippet %></td>
-    <td><%= link_to 'Edit', edit_snippet_path(snippet) %></td>
-    <td><%= link_to 'Destroy', snippet, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>
+      <% if @current_user and (snippet.owner == @current_user) %>
+        <%= link_to 'Edit', edit_snippet_path(snippet) %>
+      <% end %>
+    </td>
+    <td>
+      <% if @current_user and (snippet.owner == @current_user) %>
+        <%= link_to 'Destroy', snippet, :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>

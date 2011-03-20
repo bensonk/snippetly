@@ -27,7 +27,6 @@ class SnippetsController < ApplicationController
   # GET /snippets/new.xml
   def new
     @snippet = Snippet.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @snippet }
@@ -44,6 +43,11 @@ class SnippetsController < ApplicationController
   # POST /snippets.xml
   def create
     @snippet = Snippet.new(params[:snippet])
+    if current_user
+      @snippet.owner = current_user
+    else
+      @snippet.owner = nil
+    end
 
     respond_to do |format|
       if @snippet.save

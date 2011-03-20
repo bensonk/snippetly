@@ -1,20 +1,10 @@
+<h3><%= @snippet.name %></h3>
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @snippet.name %>
-</p>
-
-<p>
-  <b>Owner:</b>
-  <%= @snippet.owner_id %>
-</p>
-
-<p>
-  <b>Body:</b>
+<p id="snippet_body">
   <%= @snippet.body %>
 </p>
 
-
-<%= link_to 'Edit', edit_snippet_path(@snippet) %> |
+<% if @current_user and (@snippet.owner == @current_user) %>
+  <%= link_to 'Edit', edit_snippet_path(@snippet) %> |
+<% end %>
 <%= link_to 'Back', snippets_path %>
