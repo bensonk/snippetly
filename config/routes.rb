@@ -1,4 +1,9 @@
 Snippetly::Application.routes.draw do
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/about', :to => 'home#about', :as => 'about'
+  match '/home', :to => 'home#index', :as => 'home'
+  match '/', :to => 'home#index'
+
   resources :snippets
 
   # The priority is based upon order of creation:

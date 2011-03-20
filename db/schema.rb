@@ -10,12 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110320041330) do
+ActiveRecord::Schema.define(:version => 20110320051302) do
+
+  create_table "authorizations", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "snippets", :force => true do |t|
     t.string   "name"
     t.integer  "owner_id"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.integer  "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
