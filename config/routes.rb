@@ -1,5 +1,9 @@
 Snippetly::Application.routes.draw do
+  # Session stuff
   match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/sessions/destroy', :to => 'sessions#destroy'
+
+  # Home controller
   match '/about', :to => 'home#about', :as => 'about'
   match '/home', :to => 'home#index', :as => 'home'
   match '/', :to => 'home#index'
