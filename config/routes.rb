@@ -5,8 +5,9 @@ Snippetly::Application.routes.draw do
 
   # Home controller
   match '/about', :to => 'home#about', :as => 'about'
-  match '/home', :to => 'home#index', :as => 'home'
-  match '/', :to => 'home#index'
+  match '/', :to => 'snippets#index', :as => 'home'
+
+  match '/:user/:id', :to => 'snippits#list'
 
   resources :snippets
 

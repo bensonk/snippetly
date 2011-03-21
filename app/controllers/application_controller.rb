@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def must_be_user
+    redirect_to :action => :about unless current_user
+  end
+
   helper_method :current_user, :signed_in?
 
   def current_user=(user)

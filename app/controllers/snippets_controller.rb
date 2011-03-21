@@ -2,7 +2,12 @@ class SnippetsController < ApplicationController
   # GET /snippets
   # GET /snippets.xml
   def index
-    @snippets = Snippet.all
+    if current_user
+      @snippets = Snippet.find_all_by_owner_id current_user.id
+    else
+      redirect_to about_url
+      return
+    end
 
     respond_to do |format|
       format.html # index.html.erb

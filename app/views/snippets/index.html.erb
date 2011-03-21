@@ -1,35 +1,17 @@
-<h1>Listing snippets</h1>
+<h1>Snippetly</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Owner</th>
-    <th>Body</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @snippets.each do |snippet| %>
-  <tr>
-    <td><%= snippet.name %></td>
-    <td><%= snippet.owner ? snippet.owner.name : "anon" %></td>
-    <td><%= snippet.body %></td>
-    <td><%= link_to 'Show', snippet %></td>
-    <td>
-      <% if @current_user and (snippet.owner == @current_user) %>
-        <%= link_to 'Edit', edit_snippet_path(snippet) %>
+<% if @snippets.empty? %>
+  <p class="notice">
+    You don't have any snippets yet.  Maybe you'd like to 
+    <%= link_to "make one", new_snippet_url %>?
+  </p>
+<% else %>
+  <div id="new_link"><%= link_to "add", new_snippet_url %></div>
+  <div id="snippet_list">
+    <ul>
+      <% @snippets.each do |snip| %>
+        <li><%= link_to snip.name, snip %></li>
       <% end %>
-    </td>
-    <td>
-      <% if @current_user and (snippet.owner == @current_user) %>
-        <%= link_to 'Destroy', snippet, :confirm => 'Are you sure?', :method => :delete %>
-      <% end %>
-    </td>
-  </tr>
+    </ul>
+  </div>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Snippet', new_snippet_path %>

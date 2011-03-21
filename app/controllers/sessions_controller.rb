@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
       redirect_to session[:redirect_target]
       session[:redirect_target] = nil
     else
-      redirect_to :controller => :home, :action => :index
+      redirect_to home_url
     end
   end
 end
