@@ -1,0 +1,18 @@
+<h1>Your API Keys</h1>
+
+<div id="new_key">
+  <%= form_for @new_key do |f| %>
+    <%= f.submit "Create Key" %>
+  <% end %>
+</div>
+<% if @api_keys.empty? %>
+  <p class="notice">You don't have any keys yet. You should create one.</p>
+<% else %>
+  <div id="api_keys">
+    <ul>
+      <% @api_keys.each do |key| %>
+        <li><%= key.value %> <%= link_to image_tag("remove.png"), key, :method => :delete, :confirm => "Are you sure?" %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

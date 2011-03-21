@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   protected
   def current_user
     @current_user ||= User.find_by_id(session[:user_id])
+    if request[:key] and not @current_user
+      k = ApiKey.find_by_value request[:key]
+      @current_user = k.user if k and k.user
+    end
+
+    @current_user
   end
 
   def signed_in?
@@ -13,7 +19,10 @@ class ApplicationController < ActionController::Base
   end
 
   def must_be_user
-    redirect_to :action => :about unless current_user
+    unless current_user
+      flash[:notice] = "You must be logged in to do that."
+      redirect_to about_url 
+    end
   end
 
   helper_method :current_user, :signed_in?

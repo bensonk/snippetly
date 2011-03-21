@@ -1,13 +1,10 @@
 class SnippetsController < ApplicationController
+  before_filter :must_be_user
+
   # GET /snippets
   # GET /snippets.xml
   def index
-    if current_user
-      @snippets = Snippet.find_all_by_owner_id current_user.id
-    else
-      redirect_to about_url
-      return
-    end
+    @snippets = Snippet.find_all_by_owner_id current_user.id
 
     respond_to do |format|
       format.html # index.html.erb

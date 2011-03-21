@@ -7,9 +7,10 @@ Snippetly::Application.routes.draw do
   match '/about', :to => 'home#about', :as => 'about'
   match '/', :to => 'snippets#index', :as => 'home'
 
-  match '/:user/:id', :to => 'snippits#list'
+  #match '/:user/:id', :to => 'snippets#list'
 
   resources :snippets
+  resources :api_keys
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
