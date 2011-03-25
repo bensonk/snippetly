@@ -4,4 +4,5 @@ Snippetly is a tool to let you share snippets of text.  Initially, everything
 will be public, but we'll eventually add support for sharing with groups of
 friends or with individuals.  The intention is to use it primarily for moving
 bits of text around on the command line.  It is not twitter, it is not gist,
-and it is not another social network. 
+and it is not another social network.  It is currently functional, in a 
+barebones fashion. 
