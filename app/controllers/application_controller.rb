@@ -14,7 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
   def api_key
-    @api_key ||= ApiKey.find_by_value request[:key].strip
+    if request[:key]
+      @api_key ||= ApiKey.find_by_value request[:key].strip
+    else
+      nil
+    end
   end
 
   def signed_in?
