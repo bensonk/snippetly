@@ -17,7 +17,12 @@ class SnippetsController < ApplicationController
   # GET /snippets/1.xml
   def show
     @snippet = Snippet.find_by_id(params[:id])
-    @snippet = Snippet.find_by_owner_id_and_name(current_user.id, params[:id]) unless @snippet
+    if params[:nick]
+      requested_user = User.find_by_nick params[:nick]
+    else
+      requested_user ||= current_user # Default to current user if requested user isn't found
+    end
+    @snippet = Snippet.find_by_owner_id_and_name(requested_user.id, params[:id]) unless @snippet
 
     respond_to do |format|
       format.html # show.html.erb

@@ -7,7 +7,7 @@ Snippetly::Application.routes.draw do
   match '/about', :to => 'home#about', :as => 'about'
   match '/', :to => 'snippets#index', :as => 'home'
 
-  #match '/:user/:id', :to => 'snippets#list'
+  match '/snippets/:nick/:id', :to => 'snippets#show'
 
   resources :snippets
   resources :api_keys
