@@ -6,5 +6,6 @@
 
 <% if @current_user and (@snippet.owner == @current_user) %>
   <%= link_to 'Edit', edit_snippet_path(@snippet) %> |
+  <%= link_to 'Destroy', @snippet, :method => :delete %> |
 <% end %>
 <%= link_to 'Back', snippets_path %>

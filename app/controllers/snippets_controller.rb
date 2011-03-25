@@ -95,7 +95,9 @@ class SnippetsController < ApplicationController
   # DELETE /snippets/1
   # DELETE /snippets/1.xml
   def destroy
-    @snippet = Snippet.find(params[:id])
+    @snippet = Snippet.find_by_id(params[:id])
+    @snippet = Snippet.find_by_owner_id_and_name(current_user.id, params[:id]) unless @snippet
+
     @snippet.destroy
 
     respond_to do |format|

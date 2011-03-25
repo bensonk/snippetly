@@ -7,6 +7,7 @@ Snippetly::Application.routes.draw do
   match '/about', :to => 'home#about', :as => 'about'
   match '/', :to => 'snippets#index', :as => 'home'
 
+  post '/snippets/destroy/:id', :to => 'snippets#destroy'
   match '/snippets/:nick/:id', :to => 'snippets#show'
 
   resources :snippets
