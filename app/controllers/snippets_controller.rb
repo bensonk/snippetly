@@ -1,5 +1,6 @@
 class SnippetsController < ApplicationController
   before_filter :must_be_user, :except => :show
+  skip_before_filter :verify_authenticity_token
 
   # GET /snippets
   # GET /snippets.xml
@@ -52,11 +53,13 @@ class SnippetsController < ApplicationController
   # POST /snippets.xml
   def create
     @snippet = Snippet.new(params[:snippet])
+    logger.info "Snippet created: #{@snippet}"
     if current_user
       @snippet.owner = current_user
     else
       @snippet.owner = nil
     end
+    logger.info "User set: #{@snippet.owner}"
 
     respond_to do |format|
       if @snippet.save

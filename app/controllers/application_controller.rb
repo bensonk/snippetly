@@ -6,12 +6,15 @@ class ApplicationController < ActionController::Base
   protected
   def current_user
     @current_user ||= User.find_by_id(session[:user_id])
-    if request[:key] and not @current_user
-      k = ApiKey.find_by_value request[:key]
-      @current_user = k.user if k and k.user
+    if api_key and not @current_user
+      @current_user = api_key.user if api_key.user
     end
 
     @current_user
+  end
+
+  def api_key
+    @api_key ||= ApiKey.find_by_value request[:key].strip
   end
 
   def signed_in?
