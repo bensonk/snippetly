@@ -31,7 +31,7 @@ class ApiKeysController < ApplicationController
     @api_key = ApiKey.new(:user => current_user)
     respond_to do |format|
       if @api_key.save
-        format.html { redirect_to(@api_key, :notice => 'Snippet was successfully created.') }
+        format.html { redirect_to(api_keys_url, :notice => 'Snippet was successfully created.') }
         format.xml  { render :xml => @api_key, :status => :created, :location => @api_key }
         format.json { render :json => @api_key, :status => :created, :location => @api_key }
       else
