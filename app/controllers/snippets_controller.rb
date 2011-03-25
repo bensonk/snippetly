@@ -1,5 +1,5 @@
 class SnippetsController < ApplicationController
-  before_filter :must_be_user
+  before_filter :must_be_user, :except => :show
 
   # GET /snippets
   # GET /snippets.xml
@@ -23,6 +23,7 @@ class SnippetsController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @snippet }
       format.json { render :json => @snippet }
+      format.text { render :text => @snippet.body }
     end
   end
 
