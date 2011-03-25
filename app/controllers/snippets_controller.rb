@@ -16,7 +16,8 @@ class SnippetsController < ApplicationController
   # GET /snippets/1
   # GET /snippets/1.xml
   def show
-    @snippet = Snippet.find(params[:id])
+    @snippet = Snippet.find_by_id(params[:id])
+    @snippet = Snippet.find_by_owner_id_and_name(params[:id]) unless @snippet
 
     respond_to do |format|
       format.html # show.html.erb
