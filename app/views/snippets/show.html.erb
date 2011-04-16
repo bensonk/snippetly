@@ -1,8 +1,6 @@
 <h3><%= @snippet.name %></h3>
 <p id="notice"><%= notice %></p>
-<pre id="snippet_body">
-  <%= @snippet.body %>
-</pre>
+<pre id="snippet_body"><%= @snippet.body %></pre>
 
 <% if @current_user and (@snippet.owner == @current_user) %>
   <%= link_to 'Edit', edit_snippet_path(@snippet) %> |
